@@ -13,26 +13,29 @@ module.exports ={
         });
     },
     saveRegister(req,res){
-        let username = req.body.username;
         let email = req.body.email;
-        let password = req.body.pass;
-        if (username && email && password) {
+        let password = req.body.password;
+        let role = 2;
+        if (email && password) {
             pool.getConnection(function(err, connection) {
                 if (err) throw err;
                 connection.query(
-                    `INSERT INTO table_user (user_name,user_email,user_password) VALUES (?,?,SHA2(?,512));`
-                , [username, email, password],function (error, results) {
+                    `INSERT INTO user (user_email,user_password, role) VALUES (?,SHA2(?,512), ?);`
+                , [email, password, role],function (error, results) {
                     if (error) throw error; 
-                    req.flash('color', 'success');
-                    req.flash('status', 'Yes..');
-                    req.flash('message', 'Registrasi berhasil');
-                    res.redirect('/login');
+
+                    res.send({
+                        status: 'success',
+                        message: 'Registrasi berhasil',
+                    })
                 });
                 connection.release();
             })
         } else {
-            res.redirect('/login');
-            res.end();
+            res.send({
+                status: 'failed',
+                message: 'Isi email dan password',
+            })
         }
     }
 }

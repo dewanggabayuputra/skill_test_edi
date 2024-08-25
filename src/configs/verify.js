@@ -1,6 +1,6 @@
 module.exports = {
     isLogin(req, res, next){
-        if(req.session.loggedin === true){
+        if(req.headers.authorization === true){
             next();
             return;
         } else {
@@ -10,10 +10,17 @@ module.exports = {
         }
     },
     isLogout(req, res, next){
-        if(req.session.loggedin !== true){
+        if(req.headers.authorization == ''){
             next();
             return;
         }
         res.redirect('/');
+    },
+    isAdmin(req, res, next) {
+        console.log('headers', req.headers.role)
+        if (req.headers && req.headers.role && req.headers.role == 1) {
+            return next();
+        } 
+        return res.status(401).send('Unauthorized');
     }
 };

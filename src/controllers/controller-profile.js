@@ -14,14 +14,12 @@ module.exports ={
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM table_user where user_id = '${id}';
+                SELECT * FROM user where id = '${id}';
                 `
             , function (error, results) {
                 if(error) throw error;
                 res.render("profile",{
                     url: 'http://localhost:5050/',
-                    userName: req.session.username,
-                    nama: results[0]['user_name'],
                     email: results[0]['user_email']
                 });
             });

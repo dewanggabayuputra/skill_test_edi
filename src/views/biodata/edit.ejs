@@ -42,26 +42,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card py-2 px-2">
-                        <%if (pesanFlash) { %>
-                            <div class="alert alert-<%= colorFlash %> alert-dismissible fade show mt-3" role="alert">
-                                <%= pesanFlash %>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <% } %>
-
-                        <% if(isExist == false){ %>
-                        <div>
-                            <h3>Biodata anda tidak ada. Mau buat biodata?</h3>
-                        </div>
-                        <div class="pb-2">
-                            <a class="btn btn-primary" href="<%= url %>biodata/create">Buat Biodata</a>
-                        </div>
-                        <% }else{ %>
-                        <div class="pb-2">
-                            <a class="btn btn-primary" href="<%= url %>biodata/edit/<%= data.id_user %>">Edit Biodata</a>
-                        </div>
                         <div class="card-header">
                             <h3>Biodata</h3>
                         </div>
@@ -69,77 +49,81 @@
                             <form>
                                 <div class="col-md-6 px-0">
                                     <div class="form-group">
-                                        <label for="posisi">Posisi yang Dilamar</label>
-                                        <input type="text" class="form-control" id="posisi" name="posisi" required>
+                                        <label for="posisi_dilamar">Posisi yang Dilamar</label>
+                                        <input type="text" class="form-control" id="posisi_dilamar" name="posisi_dilamar" value="<%= data.posisi_dilamar %>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" required>
+                                        <input type="text" class="form-control" id="nama" name="nama" value="<%= data.nama %>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="no_ktp">No. KTP</label>
-                                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" required>
+                                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" value="<%= data.no_ktp %>" required>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="tempat_lahir">Tempat Lahir</label>
-                                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<%= data.tempat_lahir %>" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="tanggal_lahir">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" id="tanggal_lahir" required>
+                                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<%= data.tanggal_lahir %>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="jenis_kelamin">Jenis Kelamin</label>
                                         <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
-                                            <option value="L">Laki-laki</option>
-                                            <option value="P">Perempuan</option>
+                                            <option value="L" <% if (data.jenis_kelamin === 'L') { %> selected <% } %>>Laki-laki</option>
+                                            <option value="P" <% if (data.jenis_kelamin === 'P') { %> selected <% } %>>Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="agama">Agama</label>
                                         <select id="agama" name="agama" class="form-control">
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen">Kristen</option>
-                                            <option value="Katolik">Katolik</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghucu">Konghucu</option>
+                                            <option value="Islam" <% if (data.agama === 'Islam') { %> selected <% } %>>Islam</option>
+                                            <option value="Kristen" <% if (data.agama === 'Kristen') { %> selected <% } %>>Kristen</option>
+                                            <option value="Katolik" <% if (data.agama === 'Katolik') { %> selected <% } %>>Katolik</option>
+                                            <option value="Hindu"  <% if (data.agama === 'Hindu') { %> selected <% } %>>Hindu</option>
+                                            <option value="Budha" <% if (data.agama === 'Budha') { %> selected <% } %>>Budha</option>
+                                            <option value="Konghucu" <% if (data.agama === 'Konghucu') { %> selected <% } %>>Konghucu</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="golongan_darah">Golongan Darah</label>
                                         <select id="golongan_darah" name="golongan_darah" class="form-control">
-                                            <option value="A">A</option>
-                                            <option value="AB">AB</option>
-                                            <option value="B">B</option>
-                                            <option value="O">O</option>
+                                            <option value="A" <% if (data.golongan_darah === 'A') { %> selected <% } %>>A</option>
+                                            <option value="AB" <% if (data.golongan_darah === 'AB') { %> selected <% } %>>AB</option>
+                                            <option value="B" <% if (data.golongan_darah === 'B') { %> selected <% } %>>B</option>
+                                            <option value="O" <% if (data.golongan_darah === 'O') { %> selected <% } %>>O</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select id="status" name="status" class="form-control">
-                                            <option value="Lajang">Lajang</option>
-                                            <option value="Menikah">Menikah</option>
-                                            <option value="Cerai">Cerai</option>
+                                            <option value="Lajang" <% if (data.status === '1') { %> selected <% } %>>Lajang</option>
+                                            <option value="Menikah" <% if (data.status === '2') { %> selected <% } %>>Menikah</option>
+                                            <option value="Cerai" <% if (data.status === '3') { %> selected <% } %>>Cerai</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat_ktp">Alamat KTP</label>
-                                        <textarea class="form-control" id="alamat_ktp" rows="3" name="alamat_ktp" required></textarea>
+                                        <textarea class="form-control" id="alamat_ktp" rows="3" name="alamat_ktp" required><%= data.alamat_ktp %> </textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat_tinggal">Alamat Tinggal</label>
-                                        <textarea class="form-control" id="alamat_tinggal" rows="3" name="alamat_tinggal" required></textarea>
+                                        <textarea class="form-control" id="alamat_tinggal" rows="3" name="alamat_tinggal" required><%= data.alamat_tinggal %></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" value="<%= data.user_email %>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="no_telp">No. Telp</label>
-                                        <input type="text" class="form-control" id="no_telp" name="no_telp" required>
+                                        <input type="text" class="form-control" id="no_telp" name="no_telp" value="<%= data.no_telp %>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="orang_terdekat">No. Telp Orang Terdekat yang dapat Dihubungi</label>
-                                        <input type="text" class="form-control" id="orang_terdekat" name="orang_terdekat" required>
+                                        <label for="orang_terdekat">Orang Terdekat yang dapat Dihubungi</label>
+                                        <input type="text" class="form-control" id="orang_terdekat" name="orang_terdekat" value="<%= data.orang_terdekat %>" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -148,23 +132,28 @@
                                         <div class="row pt-2">
                                             <div class="col col-md-2">
                                                 <label for="jenjang_pendidikan">Jenjang Pendidikan</label>
-                                                <input type="text" class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan[]">
+                                                <select id="jenjang_pendidikan" name="jenjang_pendidikan" class="form-control">
+                                                    <option value="SMA/SMK">SMA/SMK</option>
+                                                    <option value="D3">D3</option>
+                                                    <option value="S1">S1</option>
+                                                    <option value="S2">S2</option>
+                                                </select>
                                             </div>
                                             <div class="col col-md-3">
                                                 <label for="nama_institusi">Nama Institusi</label>
-                                                <input type="text" class="form-control" id="nama_institusi" name="nama_institusi[]">
+                                                <input type="text" class="form-control" id="nama_institusi" value="<%= data.pendidikan %>" name="nama_institusi">
                                             </div>
                                             <div class="col col-md-3">
                                                 <label for="jurusan">Jurusan</label>
-                                                <input type="text" class="form-control" id="jurusan" name="jurusan[]">
+                                                <input type="text" class="form-control" id="jurusan" name="jurusan">
                                             </div>
                                             <div class="col col-md-2">
                                                 <label for="tahun_lulus">Tahun Lulus</label>
-                                                <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus[]">
+                                                <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
                                             </div>
                                             <div class="col col-md-1">
                                                 <label for="ipk">IPK</label>
-                                                <input type="text" class="form-control" id="ipk" name="ipk[]">
+                                                <input type="text" class="form-control" id="ipk" name="ipk">
                                             </div>
                                         </div>
                                     </div>
@@ -175,19 +164,19 @@
                                     <div id="pelatihanRow">
                                         <div class="row pt-2">
                                             <div class="col col-md-3">
-                                                <label for="jenjang_pendidikan">Nama Kursus</label>
-                                                <input type="text" class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan[]">
+                                                <label for="nama_kursus">Nama Kursus</label>
+                                                <input type="text" class="form-control" id="nama_kursus" name="nama_kursus">
                                             </div>
                                             <div class="col col-md-2">
                                                 <label for="sertifikat">Sertifikat Ada/Tidak</label>
-                                                <select id="sertifikat" name="sertifikat[]" class="form-control">
+                                                <select id="sertifikat" name="sertifikat" class="form-control">
                                                     <option value="1">Ada</option>
                                                     <option value="2">Tidak</option>
                                                 </select>
                                             </div>
                                             <div class="col col-md-2">
                                                 <label for="tahun">Tahun</label>
-                                                <input type="text" class="form-control" id="tahun" name="tahun[]">
+                                                <input type="number" class="form-control" id="tahun_pelatihan" name="tahun_pelatihan">
                                             </div>
                                         </div>
                                     </div>
@@ -199,32 +188,27 @@
                                         <div class="row pt-2">
                                             <div class="col col-md-3">
                                                 <label for="nama_perusahaan">Nama Perusahaan</label>
-                                                <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan[]">
+                                                <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="">
                                             </div>
                                             <div class="col col-md-3">
                                                 <label for="posisi">Posisi Terakhir</label>
-                                                <input type="text" class="form-control" id="posisi" name="posisi[]">
+                                                <input type="text" class="form-control" id="posisi" name="posisi">
                                             </div>
                                             <div class="col col-md-3">
                                                 <label for="pendapatan">Pendapatan Terakhir</label>
-                                                <input type="text" class="form-control" id="pendapatan" name="pendapatan[]">
+                                                <input type="text" class="form-control" id="pendapatan" name="pendapatan">
                                             </div>
                                             <div class="col col-md-2">
                                                 <label for="tahun">Tahun</label>
-                                                <input type="text" class="form-control" id="tahun" name="tahun[]">
+                                                <input type="text" class="form-control" id="tahun" name="tahun">
                                             </div>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-secondary mt-2" onclick="addPekerjaanField()">Tambah</button>
                                 </div>
                                 <div class="form-group col-md-6 px-0">
-                                    <label for="status">Skill</label>
-                                    <!-- <select id="status" name="status" class="form-control selectpicker" multiple data-live-search="true">
-                                        <option value="PHP">PHP</option>
-                                        <option value="Javascript">Javascript</option>
-                                        <option value="C#">C#</option>
-                                    </select> -->
-                                    <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5" multiple>
+                                    <label for="skill">Skill</label>
+                                    <select id="choices-multiple-remove-button" name="skill" placeholder="Pilih maksimal 5" multiple>
                                         <option value="HTML">HTML</option>
                                         <option value="Jquery">Jquery</option>
                                         <option value="CSS">CSS</option>
@@ -253,14 +237,13 @@
                                 </div>
                                 <div class="form-group col-md-6 px-0">
                                     <label for="penghasilan_diharapkan">Penghasilan yang Diharapkan</label>
-                                    <input type="text" class="form-control" id="penghasilan_diharapkan" name="penghasilan_diharapkan">
+                                    <input type="text" class="form-control" id="penghasilan_diharapkan" name="penghasilan_diharapkan" value="<%= data.penghasilan_diharapkan %>">
                                 </div>
                                 <div class="py-2">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
-                        <% } %>
                     </div>
                 </div>
             </div>
@@ -276,6 +259,23 @@
                 searchResultLimit:5,
                 renderChoiceLimit:5
             }); 
+
+            let id_user = "<%= data.id_user %>";
+            load_data();
+
+            function load_data(){
+                $.ajax({
+                    url:`http://localhost:5050/biodata/view/${id_user}`,
+                    method:"GET",
+                    dataType : "JSON",
+                    success:function(data)
+                    {
+                        console.log(data)
+                        let users = data.users
+                        var html = '';
+                    }
+                })
+            }
         });
 
         let pendidikanCount = 1;
@@ -290,23 +290,28 @@
             newField.innerHTML += `<div class="row pt-2">
                         <div class="col col-md-2">
                             <label for="jenjang_pendidikan${pendidikanCount}">Jenjang Pendidikan</label>
-                            <input type="text" class="form-control" id="jenjang_pendidikan${pendidikanCount}" name="jenjang_pendidikan[]">
+                            <select id="jenjang_pendidikan${pendidikanCount}" name="jenjang_pendidikan" class="form-control">
+                                <option value="SMA/SMK">SMA/SMK</option>
+                                <option value="D3">D3</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                            </select>
                         </div>
                         <div class="col col-md-3">
                             <label for="nama_institusi${pendidikanCount}">Nama Institusi</label>
-                            <input type="text" class="form-control" id="nama_institusi${pendidikanCount}" name="nama_institusi[]">
+                            <input type="text" class="form-control" id="nama_institusi${pendidikanCount}" name="nama_institusi">
                         </div>
                         <div class="col col-md-3">
                             <label for="jurusan${pendidikanCount}">Jurusan</label>
-                            <input type="text" class="form-control" id="jurusan${pendidikanCount}" name="jurusan[]">
+                            <input type="text" class="form-control" id="jurusan${pendidikanCount}" name="jurusan">
                         </div>
                         <div class="col col-md-2">
                             <label for="tahun_lulus${pendidikanCount}">Tahun Lulus</label>
-                            <input type="text" class="form-control" id="tahun_lulus${pendidikanCount}" name="tahun_lulus[]">
+                            <input type="text" class="form-control" id="tahun_lulus${pendidikanCount}" name="tahun_lulus">
                         </div>
                         <div class="col col-md-1">
                             <label for="ipk${pendidikanCount}">IPK</label>
-                            <input type="text" class="form-control" id="ipk${pendidikanCount}" name="ipk[]">
+                            <input type="text" class="form-control" id="ipk${pendidikanCount}" name="ipk">
                         </div>
                         <button type="button" class="btn btn-danger btn-minus my-3" style="height: 50%;" onclick="removePendidikanField(this)">
                             <i class="fas fa-minus"></i> <!-- Font Awesome minus icon -->
@@ -325,19 +330,19 @@
 
             newField.innerHTML += `<div class="row pt-2">
                         <div class="col col-md-3">
-                            <label for="jenjang_pendidikan${pelatihanCount}">Nama Kursus</label>
-                            <input type="text" class="form-control" id="jenjang_pendidikan${pelatihanCount}" name="jenjang_pendidikan[]">
+                            <label for="nama_kursus${pelatihanCount}">Nama Kursus</label>
+                            <input type="text" class="form-control" id="nama_kursus${pelatihanCount}" name="nama_kursus">
                         </div>
                         <div class="col col-md-2">
                             <label for="sertifikat${pelatihanCount}">Sertifikat Ada/Tidak</label>
-                            <select id="sertifikat${pelatihanCount}" name="sertifikat[]" class="form-control">
+                            <select id="sertifikat${pelatihanCount}" name="sertifikat" class="form-control">
                                 <option value="1">Ada</option>
                                 <option value="2">Tidak</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            <label for="tahun${pelatihanCount}">Tahun</label>
-                            <input type="text" class="form-control" id="tahun${pelatihanCount}" name="tahun[]">
+                            <label for="tahun_pelatihan${pelatihanCount}">Tahun</label>
+                            <input type="number" class="form-control" id="tahun_pelatihan${pelatihanCount}" name="tahun_pelatihan">
                         </div>
                         <button type="button" class="btn btn-danger btn-minus my-3" style="height: 50%;" onclick="removePelatihanField(this)">
                             <i class="fas fa-minus"></i> <!-- Font Awesome minus icon -->
@@ -358,19 +363,19 @@
             newField.innerHTML += `<div class="row pt-2">
                         <div class="col col-md-3">
                             <label for="nama_perusahaan${pekerjaanCount}">Nama Perusahaan</label>
-                            <input type="text" class="form-control" id="nama_perusahaan${pekerjaanCount}" name="nama_perusahaan[]">
+                            <input type="text" class="form-control" id="nama_perusahaan${pekerjaanCount}" name="nama_perusahaan">
                         </div>
                         <div class="col col-md-3">
                             <label for="posisi${pekerjaanCount}">Posisi Terakhir</label>
-                            <input type="text" class="form-control" id="posisi${pekerjaanCount}" name="posisi[]">
+                            <input type="text" class="form-control" id="posisi${pekerjaanCount}" name="posisi">
                         </div>
                         <div class="col col-md-3">
                             <label for="pendapatan${pekerjaanCount}">Pendapatan Terakhir</label>
-                            <input type="text" class="form-control" id="pendapatan${pekerjaanCount}" name="pendapatan[]">
+                            <input type="text" class="form-control" id="pendapatan${pekerjaanCount}" name="pendapatan">
                         </div>
                         <div class="col col-md-2">
                             <label for="tahun${pekerjaanCount}">Tahun</label>
-                            <input type="text" class="form-control" id="tahun${pekerjaanCount}" name="tahun[]">
+                            <input type="text" class="form-control" id="tahun${pekerjaanCount}" name="tahun">
                         </div>
                         <button type="button" class="btn btn-danger btn-minus my-3" style="height: 50%;" onclick="removePekerjaanField(this)">
                             <i class="fas fa-minus"></i> <!-- Font Awesome minus icon -->

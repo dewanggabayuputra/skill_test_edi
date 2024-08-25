@@ -3,5 +3,5 @@ module.exports = {
     host                : 'localhost',
     user                : 'root',
     password            : '',
-    database            : 'db_node_login'
+    database            : 'db_skill_test_edi'
 };

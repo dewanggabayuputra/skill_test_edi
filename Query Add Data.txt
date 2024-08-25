@@ -1,0 +1,21 @@
+.then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Department."
+      });
+    });
+
+
+INSERT INTO `biodata` (`id`, `id_user`, `posisi_dilamar`, `nama`, `no_ktp`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `golongan_darah`, `status`, `alamat_ktp`, `alamat_tinggal`, `no_telp`, `orang_terdekat`, `bersedia_ditempatkan`, `penghasilan_diharapkan`) VALUES (NULL, '35', 'Backend Developer', 'Dewangga Bayu Putra', '12', 'ternate', '2024-08-25', 'L', 'Islam', 'A', '0', 'jalan sama sama', 'jalan sama sama', '2147483647', '2147483647', '1', '9300000')
+
+INSERT INTO `pendidikan` (`id`, `id_biodata`, `jenjang_pendidikan`, `nama_institusi`, `jurusan`, `tahun_lulus`, `ipk`) VALUES (NULL, '13', 'S1', 'Widyatama', 'Informatika', '2019', '3.04'), (NULL, '13', 'S2', 'Likmi', 'Informasi', '2021', '3.2')
+
+INSERT INTO `pekerjaan` (`id`, `id_biodata`, `nama_perusahaan`, `posisi`, `pendapatan`, `tahun`) VALUES (NULL, '13', 'ILCS', 'Developer', '7200000', '2021'), (NULL, '13', 'Metrocom', 'Developer', '7800000', '2022')
+
+INSERT INTO `pelatihan` (`id`, `id_biodata`, `nama_kursus`, `sertifikat`, `tahun_pelatihan`) VALUES (NULL, '13', 'EPT', '1', '2022'), (NULL, '13', 'Mandarin', '1', '2023')
+
+
+INSERT INTO `skill` (`id`, `id_biodata`, `nama_skill`) VALUES (NULL, '13', 'Angular'), (NULL, '13', 'CSS')
