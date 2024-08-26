@@ -1,6 +1,6 @@
 module.exports = {
     isLogin(req, res, next){
-        if(req.headers.authorization === true){
+        if(req.headers && req.headers.authorization){
             next();
             return;
         } else {
@@ -10,7 +10,7 @@ module.exports = {
         }
     },
     isLogout(req, res, next){
-        if(req.headers.authorization == ''){
+        if(req.headers){
             next();
             return;
         }

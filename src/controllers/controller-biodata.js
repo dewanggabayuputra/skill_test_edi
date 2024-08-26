@@ -42,7 +42,6 @@ module.exports = {
     },
     store(req,res){
         const body = req.body;
-        console.log('body', body)
         const errors = [];
         for (const key in body) {
             if (body.hasOwnProperty(key)) {
@@ -62,7 +61,7 @@ module.exports = {
             
         }
 
-        let id_user = req.headers.userid
+        let id_user = req.headers.iduser
         let posisi_dilamar = req.body.posisi_dilamar;
         let nama = req.body.nama;
         let no_ktp = req.body.no_ktp;
