@@ -39,14 +39,16 @@ module.exports ={
                             data: results,
                             token: token,
                         }
-
+                        
                         if(results[0].role === 1){
                             result.url = 'biodata'
-                            res.
-                            header('authorization', token).
-                            header('userid', results[0].id).
-                            header('role', results[0].role).
-                            status(200).send({
+                            res.set({
+                                'Authorization': token,
+                                'UserId': results[0].id,
+                                'Role': results[0].role
+                            });
+                            console.log(req.headers)
+                            res.status(200).send({
                                 result
                             })
                             // res.redirect('/biodata');
@@ -78,18 +80,17 @@ module.exports ={
         }
     },
     logout(req,res){
-        req.session.destroy((err) => {
-            if(err) {
-                return console.log(err);
-            }
+        // req.session.destroy((err) => {
+        //     if(err) {
+        //         return console.log(err);
+        //     }
             res.clearCookie('secretname');
-            console.log(req.session)
             // res.redirect('/login');
-        });
-
-        // res.send({
-        //     status: 'success',
-        //     message: 'User berhasil logout',
+            res.send({
+                status: 'success',
+                message: 'User berhasil logout',
+            });
         // });
+
     },
 }
